@@ -1,4 +1,4 @@
-package entities;
+package com.noivas_eliane.course.entities;
 
 import jakarta.persistence.*;
 

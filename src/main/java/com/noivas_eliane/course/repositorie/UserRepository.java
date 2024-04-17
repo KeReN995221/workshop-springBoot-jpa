@@ -1,4 +1,9 @@
-package com.noivas_eliane.course;
+package com.noivas_eliane.course.repositorie;
 
-public interface UserRepository {
+import com.noivas_eliane.course.entities.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User,Long> {
+
+
 }
