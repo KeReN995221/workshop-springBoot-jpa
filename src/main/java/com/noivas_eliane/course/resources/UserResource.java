@@ -1,18 +1,39 @@
 package com.noivas_eliane.course.resources;
 
 import com.noivas_eliane.course.entities.User;
+import com.noivas_eliane.course.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {
+    @Autowired
+    private UserService service;
 
     @GetMapping
-    public ResponseEntity<User> findAll(){
-        User user = new User(1L, "Maria", "maria@gmail.com", "44999563217", "12345");
+    public ResponseEntity<List<User>> findAll(){
+        List<User> users = service.findAll();
+        return ResponseEntity.ok().body(users);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<User> findById(@PathVariable Long id){
+       User user = service.findById(id);
+       return ResponseEntity.ok().body(user);
+    }
+
+    @PostMapping
+    public ResponseEntity<User> insert(@RequestBody User user){
+        user = service.insert(user);
         return ResponseEntity.ok().body(user);
+//        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
+//        return ResponseEntity.created(uri).body(user);
     }
 }

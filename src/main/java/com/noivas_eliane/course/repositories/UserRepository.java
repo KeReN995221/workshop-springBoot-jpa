@@ -1,4 +1,4 @@
-package com.noivas_eliane.course.repositorie;
+package com.noivas_eliane.course.repositories;
 
 import com.noivas_eliane.course.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
