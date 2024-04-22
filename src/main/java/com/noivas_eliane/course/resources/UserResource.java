@@ -32,8 +32,7 @@ public class UserResource {
     @PostMapping
     public ResponseEntity<User> insert(@RequestBody User user){
         user = service.insert(user);
-        return ResponseEntity.ok().body(user);
-//        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
-//        return ResponseEntity.created(uri).body(user);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
+        return ResponseEntity.created(uri).body(user);
     }
 }
